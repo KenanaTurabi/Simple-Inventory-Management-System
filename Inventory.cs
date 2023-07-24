@@ -31,6 +31,7 @@ namespace Simple_Inventory_Management_System
         }
         public static void Main() {
             bool flag = false;
+            bool flag2 = false;
             while (true)
             {
                 int choice;
@@ -44,22 +45,24 @@ namespace Simple_Inventory_Management_System
                 }
                 else if (choice == 2)
                 {
+                    if (prodList.Count == 0) Console.WriteLine("No products");
+                    else Console.WriteLine("this is your items: ");
                     foreach (Product item in prodList)
                     {
-                        Console.WriteLine("this is your item");
+                        
                         item.writeProduct();
                     }
                 }
                 else if (choice == 3)
                 {
-                    Console.WriteLine("enter product name: ");
+                    Console.Write("enter product name: ");
                     string productName=Console.ReadLine();
                     foreach (Product item in prodList)
                     {
 
-                        if (productName == item.name) flag = true;
-                        if (flag==true){
-                            
+                        if (productName == item.name) 
+                        {  
+                            flag = true;
                             Console.WriteLine("this product exist update its value");
                             Console.Write("new name:  ");
                             item.name = Console.ReadLine();
@@ -73,6 +76,26 @@ namespace Simple_Inventory_Management_System
 
                     }
                     if (flag == false) { Console.WriteLine("this product does not exist"); }
+                }
+                else if (choice == 4)
+                {
+                    Console.Write("enter product name: ");
+                    foreach(Product item in prodList)
+                    {
+                        if (item.name == Console.ReadLine())
+                        {   
+                            flag2 = true;
+                            prodList.Remove(item);
+                            Console.WriteLine("the product has been deleted successfully");
+                            break;
+                           
+                        }
+
+                    }
+                    if (flag2 == false)
+                    {
+                        Console.WriteLine("the product does not exist");
+                    }
                 }
 
                 else break;

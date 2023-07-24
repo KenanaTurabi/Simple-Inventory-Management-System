@@ -43,7 +43,7 @@ namespace Simple_Inventory_Management_System
                 {
                     Inventory inventory = new Inventory();
                     inventory.addProduct();
-                    
+
                 }
                 else if (choice == 2)
                 {
@@ -51,19 +51,19 @@ namespace Simple_Inventory_Management_System
                     else Console.WriteLine("this is your items: ");
                     foreach (Product item in prodList)
                     {
-                        
+
                         item.writeProduct();
                     }
                 }
                 else if (choice == 3)
                 {
                     Console.Write("enter product name: ");
-                    string productName=Console.ReadLine();
+                    string productName = Console.ReadLine();
                     foreach (Product item in prodList)
                     {
 
-                        if (productName == item.name) 
-                        {  
+                        if (productName == item.name)
+                        {
                             flag = true;
                             Console.WriteLine("this product exist update its value");
                             Console.Write("new name:  ");
@@ -71,7 +71,7 @@ namespace Simple_Inventory_Management_System
                             Console.Write("new quantity:  ");
                             item.quantity = Int32.Parse(Console.ReadLine());
                             Console.Write("new price:  ");
-                            item.price=double.Parse(Console.ReadLine());
+                            item.price = double.Parse(Console.ReadLine());
                             flag = false;
 
 
@@ -88,12 +88,12 @@ namespace Simple_Inventory_Management_System
                     foreach (Product item in prodList)
                     {
                         if (item.name == productName)
-                        {   
+                        {
                             flag2 = true;
                             prodList.Remove(item);
                             Console.WriteLine("the product has been deleted successfully");
                             break;
-                           
+
                         }
 
                     }
@@ -102,7 +102,7 @@ namespace Simple_Inventory_Management_System
                         Console.WriteLine("the product does not exist");
                     }
                 }//choice==4(delete)
-                else if(choice==5)
+                else if (choice == 5)
                 {
 
                     Console.Write("enter product name for searchig: ");
@@ -117,7 +117,7 @@ namespace Simple_Inventory_Management_System
                             break;
 
                         }
-                        
+
 
                     }
                     if (flag3 == false)
@@ -128,7 +128,12 @@ namespace Simple_Inventory_Management_System
 
                 }//choice=5(search)
 
-                else break;
+                else
+                {
+                    Console.WriteLine("EXIT");
+                    break;
+
+                }
             }//while
             
            

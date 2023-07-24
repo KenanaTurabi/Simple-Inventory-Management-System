@@ -41,7 +41,15 @@ namespace Simple_Inventory_Management_System
                     inventory.addProduct();
                     
                 }
-               
+                else if (choice == 2)
+                {
+                    foreach (Product item in prodList)
+                    {
+                        Console.WriteLine("this is your item");
+                        item.writeProduct();
+                    }
+                }
+
                 else break;
             }
             

@@ -30,6 +30,7 @@ namespace Simple_Inventory_Management_System
             Console.WriteLine("you product has been added successfully to the list");
         }
         public static void Main() {
+            bool flag = false;
             while (true)
             {
                 int choice;
@@ -48,6 +49,30 @@ namespace Simple_Inventory_Management_System
                         Console.WriteLine("this is your item");
                         item.writeProduct();
                     }
+                }
+                else if (choice == 3)
+                {
+                    Console.WriteLine("enter product name: ");
+                    string productName=Console.ReadLine();
+                    foreach (Product item in prodList)
+                    {
+
+                        if (productName == item.name) flag = true;
+                        if (flag==true){
+                            
+                            Console.WriteLine("this product exist update its value");
+                            Console.Write("new name:  ");
+                            item.name = Console.ReadLine();
+                            Console.Write("new quantity:  ");
+                            item.quantity = Int32.Parse(Console.ReadLine());
+                            Console.Write("new price:  ");
+                            item.price=double.Parse(Console.ReadLine());
+
+
+                        }
+
+                    }
+                    if (flag == false) { Console.WriteLine("this product does not exist"); }
                 }
 
                 else break;

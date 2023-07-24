@@ -23,7 +23,7 @@ namespace Simple_Inventory_Management_System
             this.name = name;
             this.quantity = quantity;
             this.price = price;
-            Console.WriteLine("inside constructer");
+            //Console.WriteLine("inside constructer");
 
         }
         public void writeProduct()

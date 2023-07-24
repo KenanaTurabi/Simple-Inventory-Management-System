@@ -30,10 +30,12 @@ namespace Simple_Inventory_Management_System
             Console.WriteLine("you product has been added successfully to the list");
         }
         public static void Main() {
-            bool flag = false;
-            bool flag2 = false;
+            
             while (true)
             {
+                bool flag = false;
+                bool flag2 = false;
+                bool flag3 = false;
                 int choice;
                 menu();
                 choice = Int32.Parse(Console.ReadLine());
@@ -70,6 +72,7 @@ namespace Simple_Inventory_Management_System
                             item.quantity = Int32.Parse(Console.ReadLine());
                             Console.Write("new price:  ");
                             item.price=double.Parse(Console.ReadLine());
+                            flag = false;
 
 
                         }
@@ -79,10 +82,12 @@ namespace Simple_Inventory_Management_System
                 }
                 else if (choice == 4)
                 {
-                    Console.Write("enter product name: ");
-                    foreach(Product item in prodList)
+                    Console.Write("enter product name  to delete: ");
+
+                    string productName = Console.ReadLine();
+                    foreach (Product item in prodList)
                     {
-                        if (item.name == Console.ReadLine())
+                        if (item.name == productName)
                         {   
                             flag2 = true;
                             prodList.Remove(item);
@@ -96,17 +101,41 @@ namespace Simple_Inventory_Management_System
                     {
                         Console.WriteLine("the product does not exist");
                     }
-                }
+                }//choice==4(delete)
+                else if(choice==5)
+                {
+
+                    Console.Write("enter product name for searchig: ");
+                    string productName = Console.ReadLine();
+
+                    foreach (Product item in prodList)
+                    {
+                        if (item.name == productName)
+                        {
+                            flag3 = true;
+                            item.writeProduct();
+                            break;
+
+                        }
+                        
+
+                    }
+                    if (flag3 == false)
+                    {
+                        Console.WriteLine("the product does not exist");
+                    }
+
+
+                }//choice=5(search)
 
                 else break;
-            }
+            }//while
             
            
 
 
-            //Console.WriteLine(prodList);
-        }
+        }//Main
 
         
-    }
-}
+    }//class 
+}//namespace

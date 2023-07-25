@@ -9,27 +9,17 @@ namespace Simple_Inventory_Management_System
 {
     public class Inventory
     {
-          public static ArrayList prodList=new ArrayList();
+        public List<Product> prodList = new List<Product>();
+          //public static ArrayList prodList=new ArrayList();
 
         public static void menu()
         {
             Console.Write("\n Menue \n ------\n1-add product\n2-view all products\n3-edit a product \n4-delete a product\n5-search for a product\n6-exit\nPLZ ENTER YOUR CHOICE: "); 
         }
         
-        public void addProduct()
+       
+        public void Menue()
         {
-            Console.Write("enter product neme:");
-           string name=Console.ReadLine();
-            Console.Write("enter product quantity:");
-            int quantity = Int32.Parse(Console.ReadLine());
-            Console.Write("enter product price:");
-            double price = Int32.Parse(Console.ReadLine());
-
-            Product prdc = new Product(name, quantity, price);
-            prodList.Add(prdc);
-            Console.WriteLine("you product has been added successfully to the list");
-        }
-        public static void Main() {
             
             while (true)
             {
@@ -41,18 +31,27 @@ namespace Simple_Inventory_Management_System
                 choice = Int32.Parse(Console.ReadLine());
                 if (choice == 1)
                 {
-                    Inventory inventory = new Inventory();
-                    inventory.addProduct();
+                    Console.Write("enter product neme:");
+                    string name = Console.ReadLine();
+                    Console.Write("enter product quantity:");
+                    int quantity = Int32.Parse(Console.ReadLine());
+                    Console.Write("enter product price:");
+                    double price = Int32.Parse(Console.ReadLine());
+                    Product prdc = new Product(name, quantity, price);
+                    prodList.Add(prdc);
+                    Console.WriteLine("you product has been added successfully to the list");
 
                 }
                 else if (choice == 2)
                 {
-                    if (prodList.Count == 0) Console.WriteLine("No products");
-                    else Console.WriteLine("this is your items: ");
-                    foreach (Product item in prodList)
+                    Console.WriteLine(prodList.Count);
+                    if (prodList.Count== 0) Console.WriteLine("No products");
+                    else Console.WriteLine("this is your items: ");                  
+                    Console.WriteLine("count = "+prodList.Count);
+                    for (int i= 0; i < prodList.Count; i++)
                     {
+                        Console.WriteLine(prodList[i].writeProduct());
 
-                        item.writeProduct();
                     }
                 }
                 else if (choice == 3)
@@ -62,19 +61,16 @@ namespace Simple_Inventory_Management_System
                     foreach (Product item in prodList)
                     {
 
-                        if (productName == item.name)
+                        if (productName == item.Name)
                         {
                             flag = true;
                             Console.WriteLine("this product exist update its value");
                             Console.Write("new name:  ");
-                            item.name = Console.ReadLine();
+                            item.Name = Console.ReadLine();
                             Console.Write("new quantity:  ");
-                            item.quantity = Int32.Parse(Console.ReadLine());
+                            item.Quantity = Int32.Parse(Console.ReadLine());
                             Console.Write("new price:  ");
-                            item.price = double.Parse(Console.ReadLine());
-                            flag = false;
-
-
+                            item.Price = double.Parse(Console.ReadLine());
                         }
 
                     }
@@ -87,7 +83,7 @@ namespace Simple_Inventory_Management_System
                     string productName = Console.ReadLine();
                     foreach (Product item in prodList)
                     {
-                        if (item.name == productName)
+                        if (item.Name == productName)
                         {
                             flag2 = true;
                             prodList.Remove(item);
@@ -110,10 +106,10 @@ namespace Simple_Inventory_Management_System
 
                     foreach (Product item in prodList)
                     {
-                        if (item.name == productName)
+                        if (item.Name == productName)
                         {
                             flag3 = true;
-                            item.writeProduct();
+                            Console.WriteLine(item.writeProduct());
                             break;
 
                         }
@@ -135,9 +131,11 @@ namespace Simple_Inventory_Management_System
 
                 }
             }//while
-            
-           
 
+        }
+        public static void Main() {
+            Inventory inventory = new Inventory();
+            inventory.Menue();
 
         }//Main
 

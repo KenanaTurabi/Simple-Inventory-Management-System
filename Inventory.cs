@@ -10,30 +10,21 @@ namespace Simple_Inventory_Management_System
     public class Inventory
     {
         public List<Product> ProductList = new List<Product>();
-        static Product product=null;
         public static void ViewMenu()
         {
             Console.Write("\n Menue \n ------\n1-add product\n2-view all products\n3-edit a product \n4-delete a product\n5-search for a product\n6-exit\nPLZ ENTER YOUR CHOICE: "); 
-        }
-
-        
-        public Product  Validate()
+        }       
+        public Product VaildateProductByName(string productName)
         {
-            bool nameIsExist = false;
-            Console.Write("enter product name: ");
-            string productName = Console.ReadLine();
             foreach (Product item in ProductList)
             {
                 if (productName == item.Name)
                 {
-                    nameIsExist = true;
-                    product= item;
-                    break;
-
+                    return item;
                 }
             }
-            return product;
-        }
+            return null;
+        }//validate()
         public void PickFromMenu()
         {
             while (true)
@@ -49,10 +40,9 @@ namespace Simple_Inventory_Management_System
                     int quantity = Int32.Parse(Console.ReadLine());
                     Console.Write("enter product price:");
                     double price = Int32.Parse(Console.ReadLine());
-                    Product prdc = new Product(name, quantity, price);
-                    ProductList.Add(prdc);
+                    Product product = new Product(name, quantity, price);
+                    ProductList.Add(product);
                     Console.WriteLine("you product has been added successfully to the list");
-
                 }
                 else if (choice == 2)
                 {
@@ -65,7 +55,11 @@ namespace Simple_Inventory_Management_System
                 }
                 else if (choice == 3)
                 {
-                        if (Validate()!=null)
+                    Console.Write("enter product name: ");
+                    string productName = Console.ReadLine();
+                    Product product = VaildateProductByName(productName);
+
+                        if (product!=null)
                         {
                             Console.WriteLine("this product exist update its value");
                             Console.Write("new name:  ");
@@ -78,12 +72,14 @@ namespace Simple_Inventory_Management_System
                     else{ Console.WriteLine("this product does not exist"); }
                 }
                 else if (choice == 4)
-                {          
-                        if (Validate()!=null)
+                {
+                    Console.Write("enter product name: ");
+                    string productName = Console.ReadLine();
+                    Product product = VaildateProductByName(productName);
+                    if (product != null)
                         {
                             ProductList.Remove(product);
                             Console.WriteLine("the product has been deleted successfully");
-                            product = null;
                         }                   
                     else
                     {
@@ -91,23 +87,23 @@ namespace Simple_Inventory_Management_System
                     }
                 }//choice==4(delete)
                 else if (choice == 5)
-                {                 
-                        if (Validate() != null)
+                {
+                    Console.Write("enter product name: ");
+                    string productName = Console.ReadLine();
+                    Product product = VaildateProductByName(productName);
+                    if (product != null)
                         {                           
                             Console.WriteLine(product.writeProduct());
-                            product = null;
                         }
                     else 
                     {
                         Console.WriteLine("the product does not exist");
                     }
                 }//choice=5(search)
-
                 else
                 {
                     Console.WriteLine("EXIT");
                     break;
-
                 }
             }//while
         }

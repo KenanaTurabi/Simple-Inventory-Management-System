@@ -24,7 +24,7 @@ namespace Simple_Inventory_Management_System
                 }
             }
             return null;
-        }//validate()
+        }
         public void PickFromMenu()
         {
             while (true)
@@ -32,7 +32,7 @@ namespace Simple_Inventory_Management_System
                 int choice;
                 ViewMenu();
                 choice = Int32.Parse(Console.ReadLine());
-                if (choice == 1)
+                if (choice == 1)//add
                 {
                     Console.Write("enter product neme:");
                     string name = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace Simple_Inventory_Management_System
                     ProductList.Add(product);
                     Console.WriteLine("you product has been added successfully to the list");
                 }
-                else if (choice == 2)
+                else if (choice == 2)//print
                 {
                     if (ProductList.Count== 0) Console.WriteLine("No products");
                     else Console.WriteLine("these are your items: ");                  
@@ -53,7 +53,7 @@ namespace Simple_Inventory_Management_System
                         Console.WriteLine(ProductList[i].writeProduct());
                     }
                 }
-                else if (choice == 3)
+                else if (choice == 3)//edit
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
@@ -71,7 +71,7 @@ namespace Simple_Inventory_Management_System
                         }                  
                     else{ Console.WriteLine("this product does not exist"); }
                 }
-                else if (choice == 4)
+                else if (choice == 4) //delete
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
@@ -85,8 +85,8 @@ namespace Simple_Inventory_Management_System
                     {
                         Console.WriteLine("the product does not exist");
                     }
-                }//choice==4(delete)
-                else if (choice == 5)
+                }
+                else if (choice == 5)//search
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
@@ -99,17 +99,17 @@ namespace Simple_Inventory_Management_System
                     {
                         Console.WriteLine("the product does not exist");
                     }
-                }//choice=5(search)
+                }
                 else
                 {
                     Console.WriteLine("EXIT");
                     break;
                 }
-            }//while
+            }
         }
         public static void Main() {
             Inventory inventory = new Inventory();
             inventory.PickFromMenu();
-        }//Main        
-    }//class 
-}//namespace
+        }        
+    } 
+}

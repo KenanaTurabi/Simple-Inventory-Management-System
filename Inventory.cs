@@ -9,6 +9,10 @@ namespace Simple_Inventory_Management_System
 {
     public class Inventory
     {
+        private void demoFunction() 
+        { 
+        //nothing just for testing!
+        }
         public List<Product> ProductList = new List<Product>();
         public static void ViewMenu()
         {

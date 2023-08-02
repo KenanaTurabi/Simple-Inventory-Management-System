@@ -18,16 +18,11 @@ namespace Simple_Inventory_Management_System
         {
             Console.Write("\n Menue \n ------\n1-add product\n2-view all products\n3-edit a product \n4-delete a product\n5-search for a product\n6-exit\nPLZ ENTER YOUR CHOICE: "); 
         }       
-        public Product VaildateProductByName(string productName)
+        public Product FindProductByName(string productName)
         {
-            foreach (Product item in ProductList)
-            {
-                if (productName == item.Name)
-                {
-                    return item;
-                }
-            }
-            return null;
+            Product item=ProductList.FirstOrDefault(prod=>prod.Name==productName);
+            
+               return item;
         }
         public void PickFromMenu()
         {
@@ -61,7 +56,7 @@ namespace Simple_Inventory_Management_System
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
-                    Product product = VaildateProductByName(productName);
+                    Product product = FindProductByName(productName);
 
                         if (product!=null)
                         {
@@ -79,7 +74,7 @@ namespace Simple_Inventory_Management_System
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
-                    Product product = VaildateProductByName(productName);
+                    Product product = FindProductByName(productName);
                     if (product != null)
                         {
                             ProductList.Remove(product);
@@ -94,7 +89,7 @@ namespace Simple_Inventory_Management_System
                 {
                     Console.Write("enter product name: ");
                     string productName = Console.ReadLine();
-                    Product product = VaildateProductByName(productName);
+                    Product product = FindProductByName(productName);
                     if (product != null)
                         {                           
                             Console.WriteLine(product.writeProduct());
